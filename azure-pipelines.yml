@@ -8,6 +8,7 @@ steps:
     terraformVersion: 'latest'
 
 - task: TerraformTask@5
+  displayName: Terraform init
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -17,6 +18,7 @@ steps:
     backendAzureRmKey: 'classD.tfstate'
 
 - task: TerraformTask@5
+  displayName: Terraform fmt
   inputs:
     provider: 'azurerm'
     command: 'custom'
@@ -25,12 +27,15 @@ steps:
     environmentServiceNameAzureRM: 'RG_Service'
 
 - task: TerraformTask@5
+  displayName: Terraform validate
   inputs:
     provider: 'azurerm'
     command: 'validate'
 
 - task: TerraformTask@5
+  displayName: Terraform plan
   inputs:
     provider: 'azurerm'
     command: 'plan'
     environmentServiceNameAzureRM: 'RG_Service'
+
